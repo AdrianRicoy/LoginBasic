@@ -12,7 +12,7 @@ namespace Login.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(string actions ,string email, string password)
+        public IActionResult Index(string actions ,string email, string password, string status)
         {
             UserCount userCount = new UserCount(email, password);
 
@@ -25,9 +25,21 @@ namespace Login.Controllers
                     else ViewData["Danger"] = "No es un usuario valido";
                     break;
                 case "delete":
-                    bool deleteUser = new UserCount().DeleteUserCount(userCount.idUserCount, null);
+                    if (new UserCount().DeleteUserCount(userCount.idUserCount, null))
+                        ViewData["Success"] = "Se han eliminado el usuario";
+                    break;
+                case "update":
 
-                    if (deleteUser) ViewData["Success"] = "Se han eliminado el usuario";
+                    if (new UserCount().UpdateUserCount(userCount))
+                        ViewData["Success"] = "Se ha actualizado el usuario";
+                    break;
+                case "add":
+                    userCount.email = email;
+                    userCount.password = password;
+                    userCount.status = int.Parse(status);
+
+                    if (new UserCount().AddUserCount(userCount))
+                        ViewData["Success"] = "Se ha agregado un usuario";
                     break;
             }
 
