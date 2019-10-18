@@ -15,25 +15,26 @@
 
 <div class="divForm container">
     <div class="jumbotron jumbotron-fluid">
-        <form method="post">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">Status</label>
-                <input name="status" type="text" class="form-control" placeholder="Enter status" required>
-            </div>
-            <input type="submit" class="btn btn-primary" value="get in" name="actions" />
-            <input type="submit" class="btn btn-primary" value="delete" name="actions" />
-            <input type="submit" class="btn btn-primary" value="update" name="actions" />
-            <input type="submit" class="btn btn-primary" value="add" name="actions" />
-        </form>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input name="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Get in" name="actions" />
+            </form>
+        }
+        @using (Html.BeginForm("HandleUser", "Home", FormMethod.Get))
+        {
+            <br />
+            <input type="submit" class="btn btn-info" value="Create Account" name="actions" />
+        }
     </div>
 </div>
 
